@@ -10,7 +10,9 @@
     'description': "Real estate properties",
     'website': '',
     'depends': [],
-    'data': [],
+    'data': [
+        'security/ir.model.access.csv'
+    ],
     'demo': [],
     'css': [''],
     'installable': True,
