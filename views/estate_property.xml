@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Action to open To-do Task list -->
+        <act_window id="action_todo_task" name="Biblioteca" res_model="estate.model" view_mode="tree,kanban"/>
+        <record model="ir.ui.view" id="main_form_book_biblioteca">
+            <field name="name">Introduccion de libros</field>
+            <field name="model">estate.model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="active"/>
+                                <field name="name"/>
+                                <field name="description"/>
+
+                                <field name="postcode"/>
+                                <field name="date_availability"/>
+                                <field name="expected_price"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="selling_price"/>
+                                <field name="bedrooms"/>
+                                <field name="living_area"/>
+
+                                <field name="facades"/>
+                                <field name="garage"/>
+                                <field name="garden_area"/>
+
+                                <field name="garden_orientation"/>
+
+                                <field name="state"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_tree_todo_task" model="ir.ui.view">
+            <field name="name">Biblioteca</field>
+            <field name="model">estate.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--          <field name="Titulo"/>-->
+                    <!--          <field name="Descripcion"/>-->
+                    <!--          <field name="Sinopsis"/>-->
+                    <!--          <field name="fecha_de_libro"/>-->
+                    <!--          <field name="ISBN"/>-->
+                    <!--          <field name="precio" sum="Precio total"/>-->
+                </tree>
+            </field>
+        </record>
+        <record id="view_filter_todo_task" model="ir.ui.view">
+            <field name="name">Biblioteca</field>
+            <field name="model">estate.model</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!--          <field name="Titulo"/>-->
+                    <!--          <field name="Descripcion"/>-->
+                    <!--          <field name="precio"/>-->
+                    <!--          <filter name="name" string="Precio" domain="[('precio','&gt;',10)]"/>-->
+                    <!--          <filter name="name" string="Nombre" domain="[('ISBN','=','11111')]"/>-->
+                </search>
+            </field>
+        </record>
+<!--        <menuitem id="menu_todo_task" name="Biblioteca" parent="mail.menu_root_discuss" sequence="20"-->
+<!--                  action="action_todo_task"/>-->
+        <!-- actions opening views on models -->
+        <act_window id="main_action_window_biblioteca" name="Libros" res_model="estate.model"
+                    view_mode="kanban,tree,form"/>
+        <!-- Top menu item -->
+        <menuitem name="Biblioteca" id="main_menu_biblioteca"/>
+        <menuitem name="Libros" id="book_menu_biblioteca" parent="main_menu_biblioteca"
+                  action="main_action_window_biblioteca"/>
+    </data>
+</openerp>

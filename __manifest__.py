@@ -11,11 +11,13 @@
     'website': '',
     'depends': [],
     'data': [
-        'security/ir.model.access.csv'
+        #'models/estate_property.py'
+        'security/ir.model.access.csv',
+        'views/estate_property.xml',
     ],
     'demo': [],
     'css': [''],
     'installable': True,
     'application': True,
-    'auto_install': False
+    'auto_install': True
 }
