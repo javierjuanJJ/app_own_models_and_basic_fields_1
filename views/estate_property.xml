@@ -2,9 +2,9 @@
 <openerp>
     <data>
         <!-- Action to open To-do Task list -->
-        <act_window id="action_todo_task" name="Biblioteca" res_model="estate.model" view_mode="tree,kanban"/>
-        <record model="ir.ui.view" id="main_form_book_biblioteca">
-            <field name="name">Introduccion de libros</field>
+        <act_window id="action_todo_task" name="State" res_model="estate.model" view_mode="tree,kanban"/>
+        <record model="ir.ui.view" id="main_form_book_State">
+            <field name="name">State property</field>
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
                 <form>
@@ -41,40 +41,132 @@
             </field>
         </record>
         <record id="view_tree_todo_task" model="ir.ui.view">
-            <field name="name">Biblioteca</field>
+            <field name="name">State</field>
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
-                <tree>
-                    <!--          <field name="Titulo"/>-->
-                    <!--          <field name="Descripcion"/>-->
-                    <!--          <field name="Sinopsis"/>-->
-                    <!--          <field name="fecha_de_libro"/>-->
-                    <!--          <field name="ISBN"/>-->
-                    <!--          <field name="precio" sum="Precio total"/>-->
+                <tree string="List states">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="description"/>
+                    <field name="postcode"/>
+                    <field name="date_availability"/>
+<!--                    <field name="expected_price"/>-->
+<!--                    <field name="selling_price"/>-->
+                    <field name="expected_price" sum="Total expected price"/>
+                    <field name="selling_price" sum="Total selling price"/>
+                    <field name="bedrooms"/>
+                    <field name="living_area"/>
+                    <field name="facades"/>
+                    <field name="garage"/>
+                    <field name="garden"/>
+                    <field name="garden_area"/>
+                    <field name="garden_orientation"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
+
+
+        <record id="crm_lost_reason_view_form" model="ir.ui.view">
+            <field name="name">State</field>
+            <field name="model">estate.model</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="postcode"/>
+                            </group>
+                            <group>
+                                <field name="date_availability"/>
+                            </group>
+                            <group>
+                                <field name="expected_price"/>
+                            </group>
+                            <group>
+                                <field name="selling_price"/>
+                            </group>
+                            <group>
+                                <field name="bedrooms"/>
+                            </group>
+
+                            <group>
+                                <field name="living_area"/>
+                            </group>
+                            <group>
+                                <field name="facades"/>
+                            </group>
+                            <group>
+                                <field name="garage"/>
+                            </group>
+                            <group>
+                                <field name="garden"/>
+                            </group>
+                            <group>
+                                <field name="garden_area"/>
+                            </group>
+                            <group>
+                                <field name="garden_orientation"/>
+                            </group>
+
+                            <group>
+                                <field name="state"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+
+                            <notebook>
+                                <page string="Description">
+                                    <field name="description"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
         <record id="view_filter_todo_task" model="ir.ui.view">
-            <field name="name">Biblioteca</field>
+            <field name="name">State</field>
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
                 <search>
-                    <!--          <field name="Titulo"/>-->
-                    <!--          <field name="Descripcion"/>-->
-                    <!--          <field name="precio"/>-->
-                    <!--          <filter name="name" string="Precio" domain="[('precio','&gt;',10)]"/>-->
-                    <!--          <filter name="name" string="Nombre" domain="[('ISBN','=','11111')]"/>-->
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="description"/>
+                    <field name="postcode"/>
+                    <field name="date_availability"/>
+                    <field name="expected_price"/>
+                    <field name="selling_price"/>
+                    <field name="bedrooms"/>
+                    <field name="living_area"/>
+                    <field name="facades"/>
+                    <field name="garage"/>
+                    <field name="garden"/>
+                    <field name="garden_area"/>
+                    <field name="garden_orientation"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter string="Available properties" name="available_properties" domain="['|',('state', '=', 'New'),('state', '=', 'Offer Received') ]"/>
+                    <group expand="1" string="Results by postcode">
+                        <filter string="Results by postcode" name="results_by_postcode" context="{'group_by':'postcode'}"/>
+                    </group>
                 </search>
             </field>
         </record>
-<!--        <menuitem id="menu_todo_task" name="Biblioteca" parent="mail.menu_root_discuss" sequence="20"-->
-<!--                  action="action_todo_task"/>-->
+        <!--        <menuitem id="menu_todo_task" name="State" parent="mail.menu_root_discuss" sequence="20"-->
+        <!--                  action="action_todo_task"/>-->
         <!-- actions opening views on models -->
-        <act_window id="main_action_window_biblioteca" name="Libros" res_model="estate.model"
+        <act_window id="main_action_window_State" name="list_state" res_model="estate.model"
                     view_mode="kanban,tree,form"/>
         <!-- Top menu item -->
-        <menuitem name="Biblioteca" id="main_menu_biblioteca"/>
-        <menuitem name="Libros" id="book_menu_biblioteca" parent="main_menu_biblioteca"
-                  action="main_action_window_biblioteca"/>
+        <menuitem name="State" id="main_menu_State"/>
+        <menuitem name="list_state" id="book_menu_State" parent="main_menu_State"
+                  action="main_action_window_State"/>
     </data>
 </openerp>
