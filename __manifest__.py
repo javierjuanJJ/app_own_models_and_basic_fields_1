@@ -14,6 +14,7 @@
         #'models/estate_property.py'
         'security/ir.model.access.csv',
         'views/estate_property.xml',
+        'views/estate_property_type.xml',
     ],
     'demo': [],
     'css': [''],

@@ -14,6 +14,7 @@ class Lead(models.Model):
     ]
 
     _name = 'estate.model'
+    # _inherit = 'res.partner'
     _description = "State property"
 
     active = fields.Boolean(default=True)
@@ -45,3 +46,10 @@ class Lead(models.Model):
         default=STATES_CHOICES[0][0],
         selection=STATES_CHOICES
     )
+
+    property_type_id = fields.Many2one("estate.property.type", string="Name")
+
+    salesperson_id = fields.Many2one('res.users', string='Salesperson', index=True, tracking=True,
+                              default=lambda self: self.env.user)
+
+    buyer_id = fields.Many2one('res.company', string='Buyer', index=True, default=lambda self: self.env.company.id)
