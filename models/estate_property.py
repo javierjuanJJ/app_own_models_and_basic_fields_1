@@ -54,3 +54,5 @@ class Lead(models.Model):
 
     buyer_id = fields.Many2one('res.company', string='Buyer', index=True, default=lambda self: self.env.company.id)
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
+
+    offer_ids = fields.One2many("estate.property.offer", "partner_id", string="Estate property offer")
