@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/estate_property.xml',
         'views/estate_property_type.xml',
+        'views/estate_property_tag.xml',
     ],
     'demo': [],
     'css': [''],
