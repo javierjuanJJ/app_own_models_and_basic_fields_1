@@ -52,7 +52,7 @@ class Lead(models.Model):
     salesperson_id = fields.Many2one('res.users', string='Salesperson', index=True, tracking=True,
                               default=lambda self: self.env.user)
 
-    buyer_id = fields.Many2one('res.company', string='Buyer', index=True, default=lambda self: self.env.company.id)
+    buyer_id = fields.Many2one('res.partner', string='Buyer', index=True, default=lambda self: self.env.company.id)
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
 
-    offer_ids = fields.One2many("estate.property.offer", "partner_id", string="Estate property offer")
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Estate property offer")

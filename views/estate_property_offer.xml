@@ -19,14 +19,13 @@
                             </group>
                             <group name="group_right">
                                 <field name="partner_id"/>
-                                <field name="property_id"/>
                             </group>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-        <record id="view_tree_todo_task" model="ir.ui.view">
+        <record id="view_tree_todo_task2" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.property.offer</field>
             <field name="arch" type="xml">
@@ -34,13 +33,12 @@
                     <field name="price"/>
                     <field name="state"/>
                     <field name="partner_id"/>
-                    <field name="property_id"/>
                 </tree>
             </field>
         </record>
 
 
-        <record id="crm_lost_reason_view_form" model="ir.ui.view">
+        <record id="crm_lost_reason_view_form3" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.property.offer</field>
             <field name="arch" type="xml">
@@ -51,7 +49,6 @@
                                 <field name="price"/>
                                 <field name="state"/>
                                 <field name="partner_id"/>
-                                <field name="property_id"/>
                             </group>
                         </group>
                     </sheet>
@@ -60,7 +57,7 @@
         </record>
 
 
-        <record id="view_filter_todo_task" model="ir.ui.view">
+        <record id="view_filter_todo_task4" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.property.offer</field>
             <field name="arch" type="xml">

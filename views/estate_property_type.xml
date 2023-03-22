@@ -18,7 +18,7 @@
                 </form>
             </field>
         </record>
-        <record id="view_tree_todo_task" model="ir.ui.view">
+        <record id="view_tree_todo_task3" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.property.type</field>
             <field name="arch" type="xml">
@@ -29,7 +29,7 @@
         </record>
 
 
-        <record id="crm_lost_reason_view_form" model="ir.ui.view">
+        <record id="crm_lost_reason_view_form1" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.property.type</field>
             <field name="arch" type="xml">
@@ -46,7 +46,7 @@
         </record>
 
 
-        <record id="view_filter_todo_task" model="ir.ui.view">
+        <record id="view_filter_todo_task3" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.property.type</field>
             <field name="arch" type="xml">

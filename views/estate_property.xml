@@ -37,6 +37,7 @@
 
                                 <field name="state"/>
                                 <field name="buyer_id"/>
+                                <field name="offer_ids"/>
                             </group>
                         </group>
                     </sheet>
@@ -68,12 +69,13 @@
                     <field name="property_type_id"/>
                     <field name="salesperson_id"/>
                     <field name="buyer_id"/>
+                    <field name="offer_ids"/>
                 </tree>
             </field>
         </record>
 
 
-        <record id="crm_lost_reason_view_form" model="ir.ui.view">
+        <record id="crm_lost_reason_view_form2" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
@@ -136,6 +138,10 @@
                                 <field name="buyer_id"/>
                             </group>
 
+                            <group>
+                                <field name="offer_ids"/>
+                            </group>
+
                             <notebook>
                                 <page string="Description">
                                     <field name="description"/>
@@ -148,7 +154,7 @@
         </record>
 
 
-        <record id="view_filter_todo_task" model="ir.ui.view">
+        <record id="view_filter_todo_task2" model="ir.ui.view">
             <field name="name">State</field>
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
