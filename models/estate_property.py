@@ -4,6 +4,13 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models, api
 
+GARDEN_ORIENTATION_CHOICES = [
+    ('North', 'north'),
+    ('East', 'east'),
+    ('South', 'south'),
+    ('West', 'west')
+]
+
 
 class Lead(models.Model):
     STATES_CHOICES = [
@@ -35,12 +42,7 @@ class Lead(models.Model):
     garden_area = fields.Integer()
     garden_orientation = fields.Selection(
         string='Orientations',
-        selection=[
-            ('North', 'north'),
-            ('East', 'east'),
-            ('South', 'south'),
-            ('West', 'west')
-        ]
+        selection=GARDEN_ORIENTATION_CHOICES
     )
 
     state = fields.Selection(
@@ -71,3 +73,18 @@ class Lead(models.Model):
     def _compute_total(self):
         for record in self:
             record.total_area = record.living_area + record.garden_area
+
+    @api.onchange("garden")
+    def _onchange_partner_id(self):
+
+        if self.garden_orientation == None:
+            return {'warning': {
+                'title': "Warning",
+                'message': ('The garden have not choice orientation')}}
+
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = GARDEN_ORIENTATION_CHOICES[0][0]
+        else:
+            self.garden_area = 0
+            self.garden_orientation = None
