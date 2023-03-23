@@ -22,6 +22,8 @@
                                 <field name="expected_price"/>
                                 <field name="property_type_id"/>
                                 <field name="salesperson_id"/>
+                                <field name="total_area"/>
+                                <field name="best_price"/>
 
                             </group>
                             <group name="group_right">
@@ -70,6 +72,8 @@
                     <field name="salesperson_id"/>
                     <field name="buyer_id"/>
                     <field name="offer_ids"/>
+                    <field name="total_area" sum="Total area"/>
+                    <field name="best_price" sum="Best price"/>
                 </tree>
             </field>
         </record>
@@ -142,6 +146,12 @@
                                 <field name="offer_ids"/>
                             </group>
 
+                            <group>
+                                <field name="total_area"/>
+                            </group>
+                            <group>
+                                <field name="best_price"/>
+                            </group>
                             <notebook>
                                 <page string="Description">
                                     <field name="description"/>
@@ -177,6 +187,8 @@
                     <field name="property_type_id"/>
                     <field name="salesperson_id"/>
                     <field name="buyer_id"/>
+                    <field name="total_area"/>
+                    <field name="best_price"/>
                     <separator/>
                     <filter string="Available properties" name="available_properties"
                             domain="['|',('state', '=', 'New'),('state', '=', 'Offer Received') ]"/>

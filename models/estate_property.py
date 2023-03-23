@@ -1,7 +1,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class Lead(models.Model):
@@ -56,3 +56,15 @@ class Lead(models.Model):
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
 
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Estate property offer")
+    total_area = fields.Float(compute="_compute_total")
+    best_price = fields.Float(compute="_highest_price_order")
+
+    @api.depends('offer_ids.price')
+    def _highest_price_order(self):
+        for record in self:
+            total = max(record.offer_ids.mapped('price')) if record.offer_ids else 0
+            record.best_price = total
+    @api.depends("living_area","garden_area")
+    def _compute_total(self):
+        for record in self:
+            record.total_area = record.living_area + record.garden_area
