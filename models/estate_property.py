@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models, api
@@ -20,6 +21,7 @@ class Lead(models.Model):
     active = fields.Boolean(default=True)
 
     name = fields.Char(required=True)
+    create_date = fields.Date('Create Date', readonly=True)
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(default=lambda self: (datetime.now() + relativedelta(months=3)))
@@ -50,7 +52,7 @@ class Lead(models.Model):
     property_type_id = fields.Many2one("estate.property.type", string="Name")
 
     salesperson_id = fields.Many2one('res.users', string='Salesperson', index=True, tracking=True,
-                              default=lambda self: self.env.user)
+                                     default=lambda self: self.env.user)
 
     buyer_id = fields.Many2one('res.partner', string='Buyer', index=True, default=lambda self: self.env.company.id)
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
@@ -64,7 +66,8 @@ class Lead(models.Model):
         for record in self:
             total = max(record.offer_ids.mapped('price')) if record.offer_ids else 0
             record.best_price = total
-    @api.depends("living_area","garden_area")
+
+    @api.depends("living_area", "garden_area")
     def _compute_total(self):
         for record in self:
             record.total_area = record.living_area + record.garden_area

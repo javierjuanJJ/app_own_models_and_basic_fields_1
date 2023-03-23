@@ -40,6 +40,8 @@
                                 <field name="state"/>
                                 <field name="buyer_id"/>
                                 <field name="offer_ids"/>
+
+
                             </group>
                         </group>
                     </sheet>
@@ -74,6 +76,8 @@
                     <field name="offer_ids"/>
                     <field name="total_area" sum="Total area"/>
                     <field name="best_price" sum="Best price"/>
+                    
+
                 </tree>
             </field>
         </record>
@@ -152,6 +156,10 @@
                             <group>
                                 <field name="best_price"/>
                             </group>
+                            <group>
+                                
+                            </group>
+
                             <notebook>
                                 <page string="Description">
                                     <field name="description"/>
@@ -189,6 +197,8 @@
                     <field name="buyer_id"/>
                     <field name="total_area"/>
                     <field name="best_price"/>
+
+                    
                     <separator/>
                     <filter string="Available properties" name="available_properties"
                             domain="['|',('state', '=', 'New'),('state', '=', 'Offer Received') ]"/>
