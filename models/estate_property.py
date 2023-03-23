@@ -58,8 +58,8 @@ class Lead(models.Model):
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
 
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Estate property offer")
-    total_area = fields.Float(compute="_compute_total")
-    best_price = fields.Float(compute="_highest_price_order")
+    total_area = fields.Float(compute="_compute_total", store=True)
+    best_price = fields.Float(compute="_highest_price_order", store=True)
 
     @api.depends('offer_ids.price')
     def _highest_price_order(self):
