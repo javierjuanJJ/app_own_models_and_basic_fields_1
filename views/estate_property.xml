@@ -168,6 +168,9 @@
                                 <page string="Description">
                                     <field name="description"/>
                                 </page>
+                                <page string="Offer id">
+                                    <field name="offer_ids"/>
+                                </page>
                             </notebook>
                         </group>
                     </sheet>

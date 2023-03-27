@@ -20,6 +20,11 @@ STATES_CHOICES = [
     ('Canceled', 'Canceled'),
 ]
 
+STATES_OFFER_CHOICES = [
+    ('Accepted', 'Accepted'),
+    ('Refused', 'Refused')
+]
+
 
 class Lead(models.Model):
 
@@ -108,3 +113,11 @@ class Lead(models.Model):
                 )
             record.state = STATES_CHOICES[3][0]
         return True
+
+
+    # def update_seller(self, seller, price):
+    #     print('not record.state == STATES_OFFER_CHOICES[0][0]:')
+    #     self.salesperson_id = seller
+    #     self.selling_price = price
+
+

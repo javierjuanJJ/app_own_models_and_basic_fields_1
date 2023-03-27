@@ -1,12 +1,17 @@
 from odoo import fields, models, api
 
 from dateutil.relativedelta import relativedelta
+
+from odoo.exceptions import UserError
+
+STATES_OFFER_CHOICES = [
+    ('Accepted', 'Accepted'),
+    ('Refused', 'Refused')
+]
+
 class Estate_Property_Offer(models.Model):
 
-    STATES_OFFER_CHOICES = [
-        ('Accepted', 'Accepted'),
-        ('Refused', 'Refused')
-    ]
+
 
     _name = 'estate.property.offer'
     _description = "State offer property"
@@ -49,3 +54,28 @@ class Estate_Property_Offer(models.Model):
             # new_date = date + relativedelta(days=record.validity)
 
             record.create_date = new_date
+
+    def action_accept(self):
+        for record in self:
+            if not record.state == STATES_OFFER_CHOICES[0][0]:
+                if not len(record.property_id.offer_ids.filtered(lambda r: r.state == "Accepted")) == 0:
+                    raise UserError(
+                        'The properties can not be sold by more than 1 person'
+                    )
+                record.property_id.selling_price = self.price
+                record.property_id.buyer_id = self.partner_id.id
+                # .mapped("field_name")
+
+
+                # len(record.filtered(lambda r: r.property_id.offer_ids == ))
+
+            record.state = STATES_OFFER_CHOICES[0][0]
+        else:
+            pass
+
+        return True
+
+    def action_reffuse(self):
+        for record in self:
+            record.state = STATES_OFFER_CHOICES[1][0]
+        return True
