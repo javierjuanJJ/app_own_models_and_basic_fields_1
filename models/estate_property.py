@@ -3,6 +3,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models, api
+from odoo.exceptions import UserError
 
 GARDEN_ORIENTATION_CHOICES = [
     ('North', 'north'),
@@ -11,15 +12,16 @@ GARDEN_ORIENTATION_CHOICES = [
     ('West', 'west')
 ]
 
+STATES_CHOICES = [
+    ('New', 'New'),
+    ('Offer Received', 'Offer Received'),
+    ('Offer Accepted', 'Offer Accepted'),
+    ('Sold', 'Sold'),
+    ('Canceled', 'Canceled'),
+]
+
 
 class Lead(models.Model):
-    STATES_CHOICES = [
-        ('New', 'New'),
-        ('Offer Received', 'Offer Received'),
-        ('Offer Accepted', 'Offer Accepted'),
-        ('Sold', 'Sold'),
-        ('Canceled', 'Canceled'),
-    ]
 
     _name = 'estate.model'
     # _inherit = 'res.partner'
@@ -88,3 +90,21 @@ class Lead(models.Model):
         else:
             self.garden_area = 0
             self.garden_orientation = None
+
+    def cancel_button(self):
+        for record in self:
+            if record.state == STATES_CHOICES[3][0]:
+                raise UserError(
+                    'You can not cancel a solded property'
+                )
+            record.state = STATES_CHOICES[4][0]
+        return True
+
+    def sold_button(self):
+        for record in self:
+            if record.state == STATES_CHOICES[4][0]:
+                raise UserError(
+                    'You can not sell a cancelled property'
+                )
+            record.state = STATES_CHOICES[3][0]
+        return True

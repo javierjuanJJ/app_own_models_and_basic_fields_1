@@ -76,7 +76,7 @@
                     <field name="offer_ids"/>
                     <field name="total_area" sum="Total area"/>
                     <field name="best_price" sum="Best price"/>
-                    
+
 
                 </tree>
             </field>
@@ -88,6 +88,10 @@
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
                 <form string="Test">
+                    <header>
+                        <button name="cancel_button" type="object" string="Cancel"/>
+                        <button name="sold_button" type="object" string="Sold"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
@@ -157,7 +161,7 @@
                                 <field name="best_price"/>
                             </group>
                             <group>
-                                
+
                             </group>
 
                             <notebook>
@@ -198,7 +202,7 @@
                     <field name="total_area"/>
                     <field name="best_price"/>
 
-                    
+
                     <separator/>
                     <filter string="Available properties" name="available_properties"
                             domain="['|',('state', '=', 'New'),('state', '=', 'Offer Received') ]"/>
