@@ -64,10 +64,6 @@ class Estate_Property_Offer(models.Model):
 
                 record.property_id.selling_price = self.price
                 record.property_id.buyer_id = self.partner_id.id
-                # .mapped("field_name")
-
-
-                # len(record.filtered(lambda r: r.property_id.offer_ids == ))
 
             record.state = STATES_OFFER_CHOICES[0][0]
 
