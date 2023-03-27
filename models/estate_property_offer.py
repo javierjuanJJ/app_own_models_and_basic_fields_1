@@ -58,10 +58,10 @@ class Estate_Property_Offer(models.Model):
     def action_accept(self):
         for record in self:
             if not record.state == STATES_OFFER_CHOICES[0][0]:
+
                 if not len(record.property_id.offer_ids.filtered(lambda r: r.state == "Accepted")) == 0:
-                    raise UserError(
-                        'The properties can not be sold by more than 1 person'
-                    )
+                    raise UserError('The properties can not be sold by more than 1 person')
+
                 record.property_id.selling_price = self.price
                 record.property_id.buyer_id = self.partner_id.id
                 # .mapped("field_name")
@@ -70,8 +70,6 @@ class Estate_Property_Offer(models.Model):
                 # len(record.filtered(lambda r: r.property_id.offer_ids == ))
 
             record.state = STATES_OFFER_CHOICES[0][0]
-        else:
-            pass
 
         return True
 
