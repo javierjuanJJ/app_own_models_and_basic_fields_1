@@ -3,7 +3,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import float_compare
 
 GARDEN_ORIENTATION_CHOICES = [
     ('North', 'north'),
@@ -40,7 +41,8 @@ class Lead(models.Model):
     postcode = fields.Char()
     date_availability = fields.Date(default=lambda self: (datetime.now() + relativedelta(months=3)))
     expected_price = fields.Float(required=True)
-    selling_price = fields.Float()
+    # selling_price = fields.Float(compute="check_change_selling_price",readonly=False)
+    selling_price = fields.Float(readonly=False)
     bedrooms = fields.Integer(default=3)
     living_area = fields.Integer()
     facades = fields.Integer()
@@ -118,6 +120,17 @@ class Lead(models.Model):
         ('expected_price_check', 'CHECK(expected_price > 0)', 'The expected price must be a strictly positive number.'),
         ('selling_price_check', 'CHECK(selling_price >= 0)', 'The selling price must be a positive number.')
     ]
+
+    # @api.depends('selling_price')
+    # def check_change_selling_price(self):
+    #     self.check_quantity()
+
+    @api.constrains('selling_price')
+    def check_quantity(self):
+        for quant in self:
+            expected_price_to_compare = self.expected_price * 0.9
+            if float_compare(self.selling_price, (expected_price_to_compare), precision_digits=2) < 0:
+                raise ValidationError(f'The selling price value must be greater than {(expected_price_to_compare)} because is 90% of {self.expected_price}')
 
 
     # def update_seller(self, seller, price):
