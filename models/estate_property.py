@@ -114,6 +114,11 @@ class Lead(models.Model):
             record.state = STATES_CHOICES[3][0]
         return True
 
+    _sql_constraints = [
+        ('expected_price_check', 'CHECK(expected_price > 0)', 'The expected price must be a strictly positive number.'),
+        ('selling_price_check', 'CHECK(selling_price >= 0)', 'The selling price must be a positive number.')
+    ]
+
 
     # def update_seller(self, seller, price):
     #     print('not record.state == STATES_OFFER_CHOICES[0][0]:')

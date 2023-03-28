@@ -73,3 +73,7 @@ class Estate_Property_Offer(models.Model):
         for record in self:
             record.state = STATES_OFFER_CHOICES[1][0]
         return True
+
+    _sql_constraints = [
+        ('price_check', 'CHECK(price >= 0)', 'The price must be a strictly positive number.')
+    ]
