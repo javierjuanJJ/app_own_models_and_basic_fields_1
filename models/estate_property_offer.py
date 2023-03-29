@@ -15,6 +15,7 @@ class Estate_Property_Offer(models.Model):
 
     _name = 'estate.property.offer'
     _description = "State offer property"
+    _order = "price desc"
 
     active = fields.Boolean(default=True)
 

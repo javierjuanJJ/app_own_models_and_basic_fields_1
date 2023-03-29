@@ -32,6 +32,7 @@ class Lead(models.Model):
     _name = 'estate.model'
     # _inherit = 'res.partner'
     _description = "State property"
+    _order = "id desc"
 
     active = fields.Boolean(default=True)
 
@@ -66,7 +67,7 @@ class Lead(models.Model):
                                      default=lambda self: self.env.user)
 
     buyer_id = fields.Many2one('res.partner', string='Buyer', index=True, default=lambda self: self.env.company.id)
-    tag_ids = fields.Many2many("estate.property.tag", string="Tags")
+    tag_ids = fields.Many2many("estate.property.tag", string="Tags", options="{'color_field': 'color'}")
 
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Estate property offer")
     total_area = fields.Float(compute="_compute_total", store=True)
