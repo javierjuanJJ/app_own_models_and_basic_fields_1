@@ -52,7 +52,7 @@
             <field name="name">State</field>
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
-                <tree string="List states" editable="top">
+                <tree string="List states" editable="top" decoration-success="state=='Offer Received'" decoration-muted="state=='Sold'">
                     <field name="name"/>
                     <field name="active"/>
                     <field name="description"/>
@@ -169,8 +169,8 @@
                                 <page string="Description">
                                     <field name="description"/>
                                 </page>
-                                <page string="Offer id" editable="bottom">
-                                    <field name="offer_ids" attrs="{'readonly': ['|', ('state', '==', 'Offer Accepted'),('state', '==', 'Sold'),('state', '==', 'Canceled')]}"/>
+                                <page string="Offer id">
+                                    <field name="offer_ids" decoration-success="state=='Accepted'" decoration-danger="state=='Refused'" attrs="{'readonly': ['|', ('state', '==', 'Offer Accepted'),('state', '==', 'Sold'),('state', '==', 'Canceled')]}"/>
                                 </page>
                             </notebook>
                         </group>
