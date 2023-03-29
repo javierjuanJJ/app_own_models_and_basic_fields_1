@@ -33,7 +33,7 @@ class Estate_Property_Offer(models.Model):
 
     date_deadline = fields.Date(compute="_compute_total", inverse='_inverse_total', store=True)
     validity = fields.Integer(default=7)
-
+    property_type_id = fields.Many2one("estate.property.type", string="Property type")
     @api.depends("create_date", "validity")
     def _compute_total(self):
         for record in self:
@@ -74,6 +74,8 @@ class Estate_Property_Offer(models.Model):
         for record in self:
             record.state = STATES_OFFER_CHOICES[1][0]
         return True
+
+
 
     _sql_constraints = [
         ('price_check', 'CHECK(price >= 0)', 'The price must be a strictly positive number.')

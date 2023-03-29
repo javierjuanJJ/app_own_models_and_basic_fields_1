@@ -88,10 +88,12 @@
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
                 <form string="Test">
+
                     <header attrs="{'invisible': [('state', '=', 'Sold')]}">
                         <button name="cancel_button" type="object" string="Cancel" attrs="{'readonly': [('state', '=', 'Canceled')]}"/>
                         <button name="sold_button" type="object" string="Sold" attrs="{'readonly': [('state', '=', 'Canceled')]}"/>
                         <field name="state" widget="statusbar" statusbar_visible="New,Offer Received,Offer Accepted,Sold"/>
+
                     </header>
                     <sheet>
                         <group>
