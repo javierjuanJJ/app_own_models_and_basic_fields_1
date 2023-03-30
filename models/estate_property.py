@@ -117,6 +117,11 @@ class Lead(models.Model):
             record.state = STATES_CHOICES[3][0]
         return True
 
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_user_inactive(self):
+        if not (self.state == 'New' or self.state == 'Canceled'):
+            raise UserError("Can't delete an new or canceled property!")
+
     _sql_constraints = [
         ('expected_price_check', 'CHECK(expected_price > 0)', 'The expected price must be a strictly positive number.'),
         ('selling_price_check', 'CHECK(selling_price >= 0)', 'The selling price must be a positive number.')

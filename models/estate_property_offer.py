@@ -34,6 +34,26 @@ class Estate_Property_Offer(models.Model):
     date_deadline = fields.Date(compute="_compute_total", inverse='_inverse_total', store=True)
     validity = fields.Integer(default=7)
     property_type_id = fields.Many2one("estate.property.type", string="Property type")
+
+    @api.model
+    def create(self, vals):
+        # Do some business logic, modify vals...
+        property = self.env['estate.model'].browse(vals['property_id'])
+        minPrice = min(property.offer_ids.mapped('price')) if property.offer_ids else 0
+
+        res = super().create(vals)
+
+        if res.price < minPrice:
+            raise UserError(
+                f'You can not put a offer with price lower than {minPrice} and your price actually is {res.price}'
+            )
+
+        property.state = 'Offer Received'
+
+        # Then call super to execute the parent method
+        return res
+
+
     @api.depends("create_date", "validity")
     def _compute_total(self):
         for record in self:
