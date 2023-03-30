@@ -10,20 +10,11 @@
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_simple_form"/>
             <field name="arch" type="xml">
-
                 <data>
                     <group name="phone_numbers" position="inside">
                         <field name="property_ids"/>
                     </group>
-                    <!--                    <group>-->
-                    <!--                        <notebook>-->
-                    <!--                            <page string="Properties">-->
-                    <!--                                <field name="property_ids"/>-->
-                    <!--                            </page>-->
-                    <!--                        </notebook>-->
-                    <!--                    </group>-->
                 </data>
-
             </field>
         </record>
 

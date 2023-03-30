@@ -63,12 +63,12 @@
                     <!--                    <field name="selling_price"/>-->
                     <field name="expected_price" sum="Total expected price"/>
                     <field name="selling_price" sum="Total selling price"/>
-                    <field name="bedrooms"/>
-                    <field name="living_area"/>
-                    <field name="facades"/>
-                    <field name="garage"/>
-                    <field name="garden"/>
-                    <field name="garden_area"/>
+<!--                    <field name="bedrooms"/>-->
+<!--                    <field name="living_area"/>-->
+<!--                    <field name="facades"/>-->
+<!--                    <field name="garage"/>-->
+<!--                    <field name="garden"/>-->
+<!--                    <field name="garden_area"/>-->
 <!--                    <field name="garden_orientation"/>-->
                     <field name="state"/>
 <!--                    <field name="property_type_id"/>-->
