@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+
+        <act_window id="action_todo_task_user" name="State" res_model="res.users" view_mode="tree,kanban"/>
+
+
+        <record model="ir.ui.view" id="main_form_book_User">
+            <field name="name">Inherited user</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_simple_form"/>
+            <field name="arch" type="xml">
+
+                <data>
+                    <group name="phone_numbers" position="inside">
+                        <field name="property_ids"/>
+                    </group>
+                    <!--                    <group>-->
+                    <!--                        <notebook>-->
+                    <!--                            <page string="Properties">-->
+                    <!--                                <field name="property_ids"/>-->
+                    <!--                            </page>-->
+                    <!--                        </notebook>-->
+                    <!--                    </group>-->
+                </data>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="main_form_book_User_Tree">
+            <field name="name">Inherited user</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="property_ids"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <act_window id="main_action_window_User" name="list_state_user" res_model="res.users"
+                    view_mode="kanban,tree,form"/>
+        <!-- Top menu item -->
+        <menuitem name="State" id="main_menu_State"/>
+        <menuitem name="list_state_user" id="book_menu_User" parent="book_menu_State"
+                  action="main_action_window_User"/>
+
+    </data>
+</openerp>

@@ -73,6 +73,8 @@ class Lead(models.Model):
     total_area = fields.Float(compute="_compute_total", store=True)
     best_price = fields.Float(compute="_highest_price_order", store=True)
 
+    property_id = fields.Many2one("res.users", string="State property", required=True)
+
     @api.depends('offer_ids.price')
     def _highest_price_order(self):
         for record in self:

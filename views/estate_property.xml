@@ -53,8 +53,9 @@
             <field name="model">estate.model</field>
             <field name="arch" type="xml">
                 <tree string="List states" editable="top" decoration-success="state=='Offer Received'" decoration-muted="state=='Sold'">
+
+<!--                    <field name="active"/>-->
                     <field name="name"/>
-                    <field name="active"/>
                     <field name="description"/>
                     <field name="postcode"/>
                     <field name="date_availability"/>
@@ -68,12 +69,12 @@
                     <field name="garage"/>
                     <field name="garden"/>
                     <field name="garden_area"/>
-                    <field name="garden_orientation"/>
+<!--                    <field name="garden_orientation"/>-->
                     <field name="state"/>
-                    <field name="property_type_id"/>
-                    <field name="salesperson_id"/>
-                    <field name="buyer_id"/>
-                    <field name="offer_ids" attrs="{'readonly': ['|', ('state', '=', 'Offer Accepted'),('state', '=', 'Sold'),('state', '=', 'Canceled')]}"/>
+<!--                    <field name="property_type_id"/>-->
+<!--                    <field name="salesperson_id"/>-->
+<!--                    <field name="buyer_id"/>-->
+<!--                    <field name="offer_ids" attrs="{'readonly': ['|', ('state', '=', 'Offer Accepted'),('state', '=', 'Sold'),('state', '=', 'Canceled')]}"/>-->
                     <field name="total_area" sum="Total area"/>
                     <field name="best_price" sum="Best price"/>
 
