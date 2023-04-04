@@ -8,8 +8,8 @@
             <field name="model">estate.property.type</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                    </header>
+<!--                    <header>-->
+<!--                    </header>-->
                     <sheet>
                         <group name="group_top">
                             <field name="name"/>
@@ -41,9 +41,9 @@
                     </button>
                 </div>
                 <form string="Test">
-                    <header>
+<!--                    <header>-->
 
-                    </header>
+<!--                    </header>-->
 
                     <sheet>
                         <group>
